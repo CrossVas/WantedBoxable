@@ -3,7 +3,7 @@ loaderVersion="[43,)" #mandatory This is typically bumped every Minecraft versio
 license="All rights reserved"
 [[mods]] #mandatory
 modId="wantedboxable" #mandatory
-version="${file.jarVersion}" #mandatory
+version="${version}" #mandatory
 displayName="Wanted Boxable" #mandatory
 credits="IC2Classic Devs for IC2Classic" #optional
 authors="CrossVas" #optional
