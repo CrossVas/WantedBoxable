@@ -1,5 +1,6 @@
 ![](demo.png)
-[![CurseForge](http://cf.way2muchnoise.eu/full_635346_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/wanted-boxable)
+
+[![CurseForge](https://cf.way2muchnoise.eu/854007.svg)](https://www.curseforge.com/minecraft/mc-mods/wanted-boxable)
 ## Wanted Boxable
 Wanted Boxable is a small mod for IC2Classic that allows you to specify what items can be boxable and can be stored in IC2Classic's ToolBox.
 
