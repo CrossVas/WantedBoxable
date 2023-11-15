@@ -18,3 +18,9 @@ mandatory=true
 versionRange="[1.19.2-2.0.7,)"
 ordering="AFTER"
 side="BOTH"
+[[dependencies.wantedboxable]]
+modId="carbonconfig"
+mandatory=true
+versionRange="[1.19.2-1.1.2,)"
+ordering="AFTER"
+side="BOTH"
