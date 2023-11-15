@@ -1,10 +1,9 @@
 package com.wantedboxable;
 
+import ic2.core.IC2;
 import ic2.core.platform.recipes.helpers.Boxables;
-import ic2.core.utils.config.Config;
-import ic2.core.utils.config.ConfigEntry;
-import ic2.core.utils.config.ConfigHandler;
-import ic2.core.utils.config.ConfigSection;
+import ic2.core.utils.config.config.*;
+import ic2.core.utils.config.impl.ReloadMode;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.Arrays;
@@ -31,9 +30,9 @@ public class WantedBoxable {
         public static void initConfig() {
             Config CONFIG = new Config(WantedBoxable.ID);
             ConfigSection GENERAL = CONFIG.add("general");
-            PREFIXES = GENERAL.addArray("boxable", "A list of wanted boxable registry names").set(new String[] {"lexicon", "mana_tablet"}).setGameRestart();
-            HANDLER = new ConfigHandler("ic2c", CONFIG, false);
-            HANDLER.init();
+            PREFIXES = GENERAL.addArray("boxable", "A list of wanted boxable registry names").set(new String[]{"mana_tablet", "lexicon"}).setRequiredReload(ReloadMode.GAME);
+            HANDLER = IC2.FILE_WATCHER.createConfig(CONFIG, ConfigSettings.withFolder("ic2c"));
+            HANDLER.register();
         }
     }
 }
