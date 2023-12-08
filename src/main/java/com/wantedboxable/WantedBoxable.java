@@ -7,9 +7,10 @@ import carbonconfiglib.config.ConfigHandler;
 import carbonconfiglib.config.ConfigSection;
 import carbonconfiglib.impl.ReloadMode;
 import ic2.core.platform.recipes.helpers.Boxables;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -36,7 +37,7 @@ public class WantedBoxable {
 
     public void loadComplete(FMLLoadCompleteEvent e) {
         // items
-        Arrays.stream(WantedBoxableConfig.PREFIXES_ITEMS.getValue()).forEach(entry -> {
+        Arrays.stream(WantedBoxableConfig.PREFIXES_ENTRIES.getValue()).forEach(entry -> {
             if (!entry.isEmpty()) {
                 Item boxable = ForgeRegistries.ITEMS.getValue(new ResourceLocation(entry));
                 if (boxable != null) {
@@ -44,29 +45,22 @@ public class WantedBoxable {
                 }
             }
         });
-        // blocks
-        Arrays.stream(WantedBoxableConfig.PREFIXES_BLOCKS.getValue()).forEach(entry -> {
-            if (!entry.isEmpty()) {
-                Block boxable = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(entry));
-                if (boxable != null) {
-                    Boxables.INSTANCE.registerItem(boxable.asItem());
-                }
-            }
-        });
     }
 
     public static class WantedBoxableConfig {
 
-        public static ConfigEntry.ArrayConfigEntry<String> PREFIXES_ITEMS;
-        public static ConfigEntry.ArrayConfigEntry<String> PREFIXES_BLOCKS;
+        public static ConfigEntry.ArrayConfigEntry<String> PREFIXES_ENTRIES;
         public static ConfigHandler HANDLER;
 
         public static void init()  {
             Config CONFIG = new Config("ic2c/" + WantedBoxable.ID);
             ConfigSection GENERAL = CONFIG.add("general");
-            GENERAL.setComment("Wanted Boxable Items/Blocks. Requires full registry name, comma separated. Format: <mod>:<registry_name>");
-            PREFIXES_ITEMS = GENERAL.addArray("boxable_items").set(new String[]{"minecraft:lever"}).setRequiredReload(ReloadMode.GAME);
-            PREFIXES_BLOCKS = GENERAL.addArray("boxable_blocks").set(new String[]{"minecraft:crafting_table"}).setRequiredReload(ReloadMode.GAME);
+            GENERAL.setComment("Wanted Boxable Entries");
+            PREFIXES_ENTRIES = GENERAL.addArray("boxable_entries").set(new String[]{"minecraft:lever"}).setRequiredReload(ReloadMode.GAME);
+            ForgeRegistries.ITEMS.forEach(item -> {
+                ItemStack stack = new ItemStack(item);
+                PREFIXES_ENTRIES.addSuggestion(I18n.get(stack.getItem().getDescriptionId()), ForgeRegistries.ITEMS.getKey(item).toString(), ItemStack.class);
+            });
             HANDLER = CarbonConfig.CONFIGS.createConfig(CONFIG);
             HANDLER.register();
         }

@@ -109,7 +109,7 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.19.2-43.3.0'
 
     runtimeOnly fg.deobf("curse.maven:jei-238222:4030307")
-    implementation fg.deobf("curse.maven:ic2-classic-242942:4746971")
+    implementation fg.deobf("curse.maven:ic2-classic-242942:4879119")
     implementation fg.deobf("maven.modrinth:carbon-config:l6LTuPIs")
     runtimeOnly fg.deobf("curse.maven:patchouli-306770:4031402")
     runtimeOnly fg.deobf("curse.maven:curios-309927:3924518")

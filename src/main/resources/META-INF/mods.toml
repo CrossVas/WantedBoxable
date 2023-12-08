@@ -15,7 +15,7 @@ I WANT IT BOXABLE!!!
 [[dependencies.wantedboxable]]
 modId="ic2"
 mandatory=true
-versionRange="[1.19.2-2.0.7,)"
+versionRange="[1.19.2-2.0.8.1,)"
 ordering="AFTER"
 side="BOTH"
 [[dependencies.wantedboxable]]
